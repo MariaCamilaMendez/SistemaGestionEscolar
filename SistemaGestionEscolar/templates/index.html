@@ -1,0 +1,97 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gestión Escolar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-color: #f8d3e5; 
+            font-family: Arial, sans-serif;
+            text-align: center; 
+            margin: 0; 
+            padding: 20px; 
+        }
+
+        h1 {
+            color: black; 
+            font-size: 48px; 
+            margin-bottom: 20px;
+        }
+
+        p.welcome-message {
+            color: #555;
+            font-size: 20px; 
+            margin: 20px auto; 
+            font-style: italic;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 15px; 
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        ul {
+            list-style-type: none; 
+            padding: 0;
+            display: flex;
+            justify-content: center; 
+            flex-wrap: wrap; 
+        }
+
+        li {
+            margin: 15px;
+            background-color: white; 
+            border: 2px solid #d81b60;
+            border-radius: 8px; 
+            padding: 15px 25px; 
+            transition: background-color 0.3s, transform 0.3s; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  
+        }
+
+        a {
+            text-decoration: none; 
+            color: black;
+            font-size: 20px; 
+            display: block; 
+        }
+
+        li:hover {
+            background-color: #d81b60; 
+            transform: translateY(-2px); 
+        }
+
+        a:hover {
+            color: white; 
+        }
+
+        footer {
+            margin-top: 30px; 
+            font-size: 14px; 
+            color: #333; 
+            font-style: italic; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido al Sistema de Gestión Escolar</h1>
+    <ul>
+        <li><a href="{{ url_for('listar_estudiantes') }}">Estudiantes</a></li>
+        <li><a href="{{ url_for('listar_cursos') }}">Cursos</a></li>
+        <li><a href="{{ url_for('matriculacion') }}">Matriculación</a></li>
+        <li><a href="{{ url_for('mostrar_reportes') }}">Reportes</a></li>
+        <li><a href="{{ url_for('listar_profesores') }}">Profesores</a></li>
+    </ul>
+
+
+    <p class="welcome-message">
+        ¡Es un placer tenerte aquí! Explora las opciones con facilidad. 
+        Recuerda que este sistema está diseñado para hacer tu experiencia más sencilla y eficiente :).
+    </p>
+
+    <footer>
+        &copy; 2024 Sistema de Gestión Escolar. Diseñado con 💖 para ti.
+    </footer>
+</body>
+</html>

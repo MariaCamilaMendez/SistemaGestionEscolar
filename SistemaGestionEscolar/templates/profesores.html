@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Profesores</title>
+    <style>
+        body {
+            background-color: #d0e7f9;
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 20px;
+            text-align: center; 
+        }
+
+        h1 {
+            color: #003366; 
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80%; 
+            margin: 0 auto; 
+            border-collapse: collapse;
+            background-color: #f2faff; 
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        table, th, td {
+            border: 1px solid #a9d0f5; 
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #b0d4f1; 
+            color: #003366;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #003366; 
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #b0d4f1; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        }
+
+        a:hover {
+            background-color: #92c1e9; 
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Profesores</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>fecha_contratacion</th>
+            <th>Creacion</th>
+        </tr>
+        {% for profesor in profesores %}
+        <tr>
+            <td>{{ profesor.id }}</td>
+            <td>{{ profesor.first_name }}</td>
+            <td>{{ profesor.last_name }}</td>
+            <td>{{ profesor.email }}</td>
+            <td>{{ profesor.hire_date }}</td>
+            <td>{{ profesor.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Regresar al inicio</a>
+</body>
+</html>

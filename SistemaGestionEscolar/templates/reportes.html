@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Matrículas</title>
+    <style>
+        body {
+            background-color: #d9f8d9;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            text-align: center;
+            border: 2px solid #ccc;
+        }
+
+        .section:nth-child(odd) {
+            background-color: #fddde6; 
+        }
+
+        .section:nth-child(even) {
+            background-color: #d6eaff; 
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            color: black;
+        }
+
+        a {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px 20px;
+            background-color: #fddde6; 
+        }
+
+        a:hover {
+            background-color: #fcc8cf; 
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h1>Reporte de Matrículas por Curso</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Número de Estudiantes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reporte in reportes %}
+                <tr>
+                    <td>{{ reporte.course_name }}</td>
+                    <td>{{ reporte.total_estudiantes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h1>Reporte de Matrículas por profesor</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre Estudiante</th>
+                    <th>Apellido de Estudiante</th>
+                    <th>Curso</th>
+                    <th>Nombre Profesor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for estudiante in estudiantes %}
+                <tr>
+                    <td>{{ estudiante.first_name }}</td>
+                    <td>{{ estudiante.last_name }}</td>
+                    <td>{{ estudiante.course_name }}</td>
+                    <td>{{ estudiante.prof }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h1>Reporte de los estudiantes matriculados en un curso específico</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre Estudiante</th>
+                    <th>Apellido de Estudiante</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for estudiante in cursos %}
+                <tr>
+                    <td>{{ estudiante.first_name }}</td>
+                    <td>{{ estudiante.last_name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h1>Reporte del total de estudiantes por curso</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Total de Estudiantes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso_estudiante in curso_estudiantes %}
+                <tr>
+                    <td>{{ curso_estudiante.course_name }}</td>
+                    <td>{{ curso_estudiante.total_estudiantes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h1>Profesores con más estudiantes matriculados en sus cursos</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Profesor</th>
+                    <th>Total de Estudiantes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers_report %}
+                <tr>
+                    <td>{{ teacher.first_name }} {{ teacher.last_name }}</td>
+                    <td>{{ teacher.total_students }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ url_for('index') }}">Regresar al inicio</a>
+</body>
+</html>

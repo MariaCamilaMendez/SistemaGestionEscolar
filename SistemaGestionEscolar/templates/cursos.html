@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Cursos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-color: #d6eaf8; /* Fondo azul pastel */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #000000; 
+            margin-bottom: 30px;
+        }
+
+        table {
+            margin: 0 auto; 
+            border-collapse: separate;
+            border-spacing: 0; 
+            width: 80%; 
+            background-color: #ffffff; 
+            border: 2px solid #4a90e2; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+        }
+
+        th, td {
+            padding: 15px; 
+            text-align: left; 
+            border: 1px solid #4a90e2; 
+        }
+
+        th {
+            background-color: #a9d8f3;
+            color: #000000;
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 16px;
+            color: #000000; 
+            background-color: #eef7fc; 
+        }
+
+        tr:hover td {
+            background-color: #d1e9f8;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #000000; 
+            padding: 10px 20px;
+            border: 2px solid #4a90e2; 
+            border-radius: 5px;
+            background-color: #ffffff; 
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #4a90e2;
+            color: #ffffff; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Cursos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Curso</th>
+                <th>Profesor ID</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+            <tr>
+                <td>{{ curso.id }}</td>
+                <td>{{ curso.course_name }}</td>
+                <td>{{ curso.teacher_id }}</td>
+                <td>{{ curso.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('index') }}">Regresar al inicio</a>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriculación</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ffd6e7; 
+            color: #000000; 
+        }
+        h2 {
+            text-align: center; 
+            margin-bottom: 20px;
+        }
+        .btn-matricularse {
+            display: block;
+            margin: 20px auto; 
+            background-color: #ffb6c1; 
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px; 
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-matricularse:hover {
+            background-color: #ff8aa7; 
+        }
+        .link-inicio {
+            display: block;
+            text-align: center; 
+            margin-top: 20px;
+            text-decoration: none;
+            color: #000000; /* Texto negro */
+            font-size: 16px;
+        }
+        .link-inicio:hover {
+            text-decoration: underline; /* Subrayar al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Formulario de Matriculación</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <!-- Selección del estudiante -->
+        <div class="form-group">
+            <label for="student_id">Estudiante:</label>
+            <select class="form-control" id="student_id" name="student_id" required>
+                <option value="">Selecciona un estudiante</option>
+                {% for estudiante in estudiantes %}
+                    <option value="{{ estudiante.id }}">{{ estudiante.first_name }} {{ estudiante.last_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="course_ids">Cursos disponibles:</label>
+            <select class="form-control" id="course_ids" name="course_ids" multiple required>
+                {% for curso in cursos %}
+                    <option value="{{ curso.id }}">{{ curso.course_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn-matricularse">Matricularse</button>
+    </form>
+</div>
+<a href="{{ url_for('index') }}" class="link-inicio">Regresar al inicio</a>
+
+</body>
+</html>

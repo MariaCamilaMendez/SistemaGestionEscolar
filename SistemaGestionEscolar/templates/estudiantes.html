@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Estudiantes</title>
+    <style>
+        body {
+            background-color: #fce4ec;
+            font-family: Arial, sans-serif; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            padding: 20px;
+            height: 100vh; 
+        }
+
+        h1 {
+            color: black;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px; 
+        }
+
+        table {
+            width: 90%;
+            max-width: 1000px; 
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 12px; 
+            overflow: hidden; 
+            margin-bottom: 40px; 
+        }
+
+        th, td {
+            padding: 15px; 
+            text-align: left;
+            border: 2px solid #f8bbd0; 
+        }
+
+        th {
+            background-color: #f8bbd0;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fce4ec; 
+        }
+
+        tr:hover {
+            background-color: #f8bbd0; 
+        }
+
+        a {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background-color: #d81b60;
+            padding: 12px 30px; 
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 18px; 
+        }
+
+        a:hover {
+            background-color: #ad1457; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Estudiantes</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Fecha De Nacimiento</th>
+            <th>Fecha de Creacion</th>
+        </tr>
+        {% for estudiante in estudiantes %}
+        <tr>
+            <td>{{ estudiante.id }}</td>
+            <td>{{ estudiante.first_name }}</td>
+            <td>{{ estudiante.last_name }}</td>
+            <td>{{ estudiante.email }}</td>
+            <td>{{ estudiante.date_of_birth }}</td>
+            <td>{{ estudiante.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Regresar al inicio</a>
+</body>
+</html>
